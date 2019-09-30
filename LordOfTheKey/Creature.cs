@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LordOfTheKey
 {
-    class Creature : EarthElement
+    class Creature : Core
     {
         public Creature(string name, int health, char symbol, int x, int y) : base (name, symbol, x, y)
         {

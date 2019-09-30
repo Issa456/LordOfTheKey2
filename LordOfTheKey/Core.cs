@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace LordOfTheKey
 {
-    class EarthElement
+    class Core
     {
-        public EarthElement(string name, char symbol, int x, int y)
+        public Core(string name, char symbol, int x, int y)
         {
             Name = name;
             Symbol = symbol;

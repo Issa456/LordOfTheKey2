@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace LordOfTheKey
 {
-    class KeyRoom : MapObjects
+    class Door : MapObjects
     {
-        public KeyRoom(char symbol) : base(symbol)
+        public Door(char symbol) : base(symbol)
         {
 
         }

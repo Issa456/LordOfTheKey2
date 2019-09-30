@@ -14,7 +14,7 @@ namespace LordOfTheKey
 
         Room[,] rooms;
         Player player;
-        
+
 
         public void StartGame()
         {
@@ -42,12 +42,16 @@ namespace LordOfTheKey
                 for (int x = 0; x < worldWidth; x++)
                 {
                     rooms[x, y] = new Room();
-                    if (x == 0 || y == 0 || x == worldWidth-1 || y == worldHeight-1 || x == 13 && y != 13 || x > 13 && x != 18 && y == 7)
+                    if (x == 0 || y == 0 || x == worldWidth - 1 || y == worldHeight - 1 || x == 13 && y != 13 || x > 13 && x != 18 && y == 7)
                     {
                         rooms[x, y].MapObjects = new Wall('#');
                     }
+                    else if (x == 18 && y == 7 || x == 13 && y == 13)
+                    {
+                        rooms[x, y].MapObjects = new Door('D');
+                    }
                 }
-                
+
             }
         }
         private void DisplayGameField()
@@ -57,15 +61,16 @@ namespace LordOfTheKey
             {
                 for (int x = 0; x < worldWidth; x++)
                 {
-                    
+
                     if (player.X == x && player.Y == y)
                     {
                         Console.ForegroundColor = ConsoleColor.Green;
                         Console.Write($" {player.Symbol} ");
                         Console.ResetColor();
-                    }else if(rooms[x, y].MapObjects != null)
+                    }
+                    else if (rooms[x, y].MapObjects != null)
                     {
-                        Console.Write($" {rooms[x, y].MapObjects.Symbol} "); 
+                        Console.Write($" {rooms[x, y].MapObjects.Symbol} ");
                     }
                     else
                     {
@@ -84,16 +89,20 @@ namespace LordOfTheKey
             switch (command)
             {
                 case 'a':
-                    player.X--;
+                    if (rooms[player.X - 1, player.Y].MapObjects == null)
+                        player.X--;
                     break;
                 case 'w':
-                    player.Y--;
+                    if (rooms[player.X, player.Y-1].MapObjects == null)
+                        player.Y--;
                     break;
                 case 'd':
-                    player.X++;
+                    if (rooms[player.X + 1, player.Y].MapObjects == null)
+                        player.X++;
                     break;
                 case 's':
-                    player.Y++;
+                    if (rooms[player.X, player.Y + 1].MapObjects == null)
+                        player.Y++;
                     break;
             }
             Console.Clear();

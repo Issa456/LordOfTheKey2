@@ -6,18 +6,11 @@ using System.Threading.Tasks;
 
 namespace LordOfTheKey
 {
-    class Room
+    class Key : MapObjects
     {
- 
-        public Room()
+        public Key(char symbol) : base(symbol)
         {
-           
+
         }
-
-        public Item Item { get; set; }
-        public MapObjects MapObjects { get; set; }
-        
-
     }
 }
-
