@@ -36,6 +36,7 @@ namespace LordOfTheKey
         private void CreateRooms()
         {
             rooms = new Room[worldWidth, worldHeight];
+            Random random = new Random();
 
             for (int y = 0; y < worldHeight; y++)
             {
@@ -49,6 +50,10 @@ namespace LordOfTheKey
                     else if (x == 18 && y == 7 || x == 13 && y == 13)
                     {
                         rooms[x, y].MapObjects = new Door('D');
+                    }else if (x == random.Next(1, 12) && y == random.Next(1, 13))
+                    {
+                        rooms[x, y].MapObjects = new Key('n');
+
                     }
                 }
 
@@ -70,7 +75,18 @@ namespace LordOfTheKey
                     }
                     else if (rooms[x, y].MapObjects != null)
                     {
-                        Console.Write($" {rooms[x, y].MapObjects.Symbol} ");
+                        if (rooms[x, y].MapObjects.Symbol == 'D')
+                        {
+                            Console.ForegroundColor = ConsoleColor.Green;
+                            Console.Write($" {rooms[x, y].MapObjects.Symbol} ");
+                            Console.ResetColor();
+                        }
+                        else
+                        {
+                            Console.ForegroundColor = ConsoleColor.Cyan;
+                            Console.Write($" {rooms[x, y].MapObjects.Symbol} ");
+                            Console.ResetColor();
+                        }
                     }
                     else
                     {
@@ -93,7 +109,7 @@ namespace LordOfTheKey
                         player.X--;
                     break;
                 case 'w':
-                    if (rooms[player.X, player.Y-1].MapObjects == null)
+                    if (rooms[player.X, player.Y - 1].MapObjects == null)
                         player.Y--;
                     break;
                 case 'd':
@@ -114,6 +130,7 @@ namespace LordOfTheKey
             string playerName = Console.ReadLine();
 
             player = new Player(playerName, 100, '@', 10, 10);
+            Console.Clear();
             return playerName;
         }
 

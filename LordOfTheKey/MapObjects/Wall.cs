@@ -10,6 +10,7 @@ namespace LordOfTheKey
     {
         public Wall(char symbol) : base (symbol)
         {
+            
         }
         
     }
